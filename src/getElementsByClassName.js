@@ -7,6 +7,8 @@
 var getElementsByClassName = function(className) {
   // your code here
   // You should use document.body, element.childNodes, and element.classList
-  var body = document.body;
-  
+  // Use childNodes recursively to iterate through and store if the element contains the className
+  // childNodes returns undefined if there are none
+  // Check the classList at each node to see if className is present
+  var result = [];
 };
