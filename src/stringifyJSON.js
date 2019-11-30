@@ -60,9 +60,16 @@ var stringifyJSON = function(obj) {
       // stringifiedObj.push(stringKey);
       // var stringValue = stringifyJSON(obj[key]);
       // stringifiedObj.push(stringValue);
-
-      var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
-      stringifiedObj.push(stringKeyValue);
+      // if (obj[key] === undefined || typeof obj[key] === undefined) {
+      //   continue;
+      // } else {
+      //   var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
+      //   stringifiedObj.push(stringKeyValue);
+      // }
+      if (obj[key] !== undefined && typeof obj[key] !== "function") {
+        var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
+        stringifiedObj.push(stringKeyValue);
+      }
     }
 
     return "{" + stringifiedObj + "}";
