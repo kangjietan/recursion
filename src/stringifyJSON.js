@@ -18,17 +18,31 @@ var stringifyJSON = function(obj) {
   }
 
   // Check if array, iterate over array
+  var stringifiedArr = [];
   if(Array.isArray(obj)) {
+    // If empty arr
     if(obj.length === 0) {
       return "[]";
     }
 
     for (var i = 0; i < obj.length; i++) {
-
+      stringifiedArr.push(stringifyJSON(obj[i]));
     }
+
+    return "[" + stringifiedArr + "]";
   }
 
   // Check if object, iterate over object
+  // typeof null === object,
+  if (typeof obj === "object" && obj !== null) {
+    if(Object.keys(obj).length === 0 && obj.constructor === Object) {
+      return "{}";
+    }
 
+    for (var key in obj) {
+      
+    }
+
+  }
 
 };
