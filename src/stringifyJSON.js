@@ -5,7 +5,6 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
-  var stringified = "";
 
   // Check numbers, booleans, or null to just stringify right away
   if(typeof obj === "number" || typeof obj === "boolean" || obj === null) {
@@ -35,37 +34,14 @@ var stringifyJSON = function(obj) {
   // Check if object, iterate over object
   // typeof null === object,
   var stringifiedObj = [];
+  // If object is empty, return
   if (typeof obj === "object" && obj !== null) {
     if(Object.keys(obj).length === 0 && obj.constructor === Object) {
       return "{}";
     }
 
-    // if(Object.keys(obj).length === 1) {
-    //   var keyOne = Object.keys(obj)[0];
-    //   stringifiedObj += '"' + keyOne + '":' + stringifyJSON(obj[keyOne]);
-    // } else {
-    //   for (var key in obj) {
-    //     stringifiedObj += '"' + key + '":';
-    //     stringifiedObj += stringifyJSON(obj[key]) + ",";
-    //   }
-    // }
-
-    // for (var key in obj) {
-    //   stringifiedObj += '"' + key + '":';
-    //   stringifiedObj += stringifyJSON(obj[key]) + ",";
-    // }
-
+    // Iterate over each property, key is string, value will be handled by function call
     for (var key in obj) {
-      // var stringKey = '"' + key + '":';
-      // stringifiedObj.push(stringKey);
-      // var stringValue = stringifyJSON(obj[key]);
-      // stringifiedObj.push(stringValue);
-      // if (obj[key] === undefined || typeof obj[key] === undefined) {
-      //   continue;
-      // } else {
-      //   var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
-      //   stringifiedObj.push(stringKeyValue);
-      // }
       if (obj[key] !== undefined && typeof obj[key] !== "function") {
         var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
         stringifiedObj.push(stringKeyValue);
