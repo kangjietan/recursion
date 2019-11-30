@@ -34,14 +34,18 @@ var stringifyJSON = function(obj) {
 
   // Check if object, iterate over object
   // typeof null === object,
+  var stringifiedObj = "";
   if (typeof obj === "object" && obj !== null) {
     if(Object.keys(obj).length === 0 && obj.constructor === Object) {
       return "{}";
     }
 
     for (var key in obj) {
-      
+      stringifiedObj += '"' + key + '":';
+      stringifiedObj += stringifyJSON(obj[key]);
     }
+
+    return "{" + stringifiedObj + "}";
 
   }
 
