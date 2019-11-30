@@ -34,19 +34,38 @@ var stringifyJSON = function(obj) {
 
   // Check if object, iterate over object
   // typeof null === object,
-  var stringifiedObj = "";
+  var stringifiedObj = [];
   if (typeof obj === "object" && obj !== null) {
     if(Object.keys(obj).length === 0 && obj.constructor === Object) {
       return "{}";
     }
 
+    // if(Object.keys(obj).length === 1) {
+    //   var keyOne = Object.keys(obj)[0];
+    //   stringifiedObj += '"' + keyOne + '":' + stringifyJSON(obj[keyOne]);
+    // } else {
+    //   for (var key in obj) {
+    //     stringifiedObj += '"' + key + '":';
+    //     stringifiedObj += stringifyJSON(obj[key]) + ",";
+    //   }
+    // }
+
+    // for (var key in obj) {
+    //   stringifiedObj += '"' + key + '":';
+    //   stringifiedObj += stringifyJSON(obj[key]) + ",";
+    // }
+
     for (var key in obj) {
-      stringifiedObj += '"' + key + '":';
-      stringifiedObj += stringifyJSON(obj[key]);
+      // var stringKey = '"' + key + '":';
+      // stringifiedObj.push(stringKey);
+      // var stringValue = stringifyJSON(obj[key]);
+      // stringifiedObj.push(stringValue);
+
+      var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
+      stringifiedObj.push(stringKeyValue);
     }
 
     return "{" + stringifiedObj + "}";
-
   }
 
 };
