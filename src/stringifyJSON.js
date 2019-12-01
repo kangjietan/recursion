@@ -40,10 +40,10 @@ var stringifyJSON = function(obj) {
       return "{}";
     }
 
-    // Iterate over each property, key is string, value will be handled by function call
+    // Iterate over each property, stringify key and value with function call
     for (var key in obj) {
       if (obj[key] !== undefined && typeof obj[key] !== "function") {
-        var stringKeyValue = '"' + key + '":' + stringifyJSON(obj[key]);
+        var stringKeyValue = stringifyJSON(key) + ":" + stringifyJSON(obj[key]);
         stringifiedObj.push(stringKeyValue);
       }
     }

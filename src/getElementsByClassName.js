@@ -12,11 +12,9 @@ var getElementsByClassName = function(className) {
   // Check the classList at each node to see if className is present
   // Push element into array if it exists
   var result = [];
-  // if(document.body.classList && document.body.classList.contains(className)) {
-  //   result.push(document.body);
-  // }
 
   var checkChildNodes = function(node) {
+    // if current 
     if (node.classList && node.classList.contains(className)) {
       result.push(node);
     }
@@ -28,8 +26,5 @@ var getElementsByClassName = function(className) {
     }
   }
   checkChildNodes(document.body);
-  console.log(document.body);
-  console.log("Resulting array: ", result);
-  console.log("Expected array: ", document.getElementsByClassName(className));
   return result;
 };
