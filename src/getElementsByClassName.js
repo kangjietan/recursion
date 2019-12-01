@@ -10,5 +10,26 @@ var getElementsByClassName = function(className) {
   // Use childNodes recursively to iterate through and store if the element contains the className
   // childNodes returns undefined if there are none
   // Check the classList at each node to see if className is present
+  // Push element into array if it exists
   var result = [];
+  // if(document.body.classList && document.body.classList.contains(className)) {
+  //   result.push(document.body);
+  // }
+
+  var checkChildNodes = function(node) {
+    if (node.classList && node.classList.contains(className)) {
+      result.push(node);
+    }
+
+    if (node.hasChildNodes()) {
+      for (var i = 0; i < node.childNodes.length; i++) {
+        checkChildNodes(node.childNodes[i]);
+      }
+    }
+  }
+  checkChildNodes(document.body);
+  console.log(document.body);
+  console.log("Resulting array: ", result);
+  console.log("Expected array: ", document.getElementsByClassName(className));
+  return result;
 };
